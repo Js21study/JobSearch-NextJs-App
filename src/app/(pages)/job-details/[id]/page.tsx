@@ -7,11 +7,12 @@ import axios from 'axios';
 import { Job } from '@/app/@types';
 import LottieImage from '@/app/lib/LottieImage';
 import LoadingLottie from '../../../assets/json/loadingLotti.json';
-import { search } from '@/app/lib/localStorage';
 
 const JobDetails = ({ params }: { params: { id: string } }) => {
   const [jobs, setJobs] = useState<Job[]>();
   const decodedID = decodeURIComponent(params.id.replace(/%3D%3D/g, '=='));
+  const searchfromLS = localStorage.getItem('search');
+  const search = searchfromLS && JSON.parse(searchfromLS);
 
   const searchValue = search?.search;
   useEffect(() => {

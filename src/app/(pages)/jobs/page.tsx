@@ -10,12 +10,13 @@ import { Job } from '@/app/@types';
 import { getJobData } from '@/app/api';
 import LottieImage from '@/app/lib/LottieImage';
 import LoadingLottie from '../../assets/json/loadingLotti.json';
-import { search } from '@/app/lib/localStorage';
 
 const JobsPage = () => {
   const ref = useRef(null);
   const [jobs, setJobs] = useState<Job[]>();
   const [isSearchChanged, setSearchChanged] = useState(false);
+  const searchfromLS = localStorage.getItem('search');
+  const search = searchfromLS && JSON.parse(searchfromLS);
 
   const searchValue = search?.search;
   useEffect(() => {
@@ -30,14 +31,14 @@ const JobsPage = () => {
       }
     };
     fetchData();
-  }, [searchValue, isSearchChanged]);
+  }, [searchValue, searchValue.length, isSearchChanged]);
   const handleSearchChanged = (value: boolean) => {
     setSearchChanged(value);
   };
 
   return (
     <section className="container mx-auto p-4 sm:px-12 mt-32 ">
-      <SearchComponent setSearchChanged={handleSearchChanged} />
+      <SearchComponent setSearchChanged={handleSearchChanged} searchChanged={isSearchChanged} />
       <ul ref={ref} className="grid gap-8 ">
         {!!jobs &&
           jobs.map((job, index) => (

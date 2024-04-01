@@ -9,13 +9,18 @@ import { getJobData } from '@/app/api';
 import { Job } from '@/app/@types';
 import LottieImage from '@/app/lib/LottieImage';
 import Loading from '../../assets/json/loadingLotti.json';
-import { likedJobsFromLS, search } from '@/app/lib/localStorage';
 
 const LikedPage = () => {
   const [jobs, setJobs] = useState<Job[]>();
 
+  const searchfromLS = localStorage.getItem('search');
+  const search = searchfromLS && JSON.parse(searchfromLS);
   const searchValue = search?.search;
   const ref = useRef(null);
+  const likedJobsFromLS = () => {
+    const data = localStorage.getItem('liked');
+    return JSON.parse(data || '[]');
+  };
 
   useEffect(() => {
     const fetchData = async () => {

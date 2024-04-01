@@ -1,11 +1,13 @@
 'use client';
-import FormProfile from '@/app/components/FormProfile';
-import { profile } from '@/app/lib/localStorage';
-import Link from 'next/link';
+
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import FormProfile from '@/app/components/FormProfile';
 
 const CreateProfilePage = () => {
   const [success, setSuccess] = useState(false);
+  const profileDatafromLS = localStorage.getItem('profile');
+  const profile = profileDatafromLS && JSON.parse(profileDatafromLS);
 
   useEffect(() => {
     if (!!profile) {

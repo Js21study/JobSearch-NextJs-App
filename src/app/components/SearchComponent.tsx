@@ -5,21 +5,21 @@ import SearchIcon from '../assets/svg/search.svg';
 import Link from 'next/link';
 
 interface SearchComponentProps {
+  searchChanged: boolean;
   setSearchChanged?: (value: boolean) => void;
   homePage?: boolean;
 }
-const SearchComponent = ({ setSearchChanged, homePage }: SearchComponentProps) => {
+const SearchComponent = ({ setSearchChanged, homePage, searchChanged }: SearchComponentProps) => {
   const [searchValue, setSearchValue] = useState('');
 
   const changeInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
-    setSearchChanged && setSearchChanged(false);
   };
 
   const clickSearch = () => {
     const searchVal = { search: searchValue };
     localStorage.setItem('search', JSON.stringify(searchVal));
-    setSearchChanged && setSearchChanged(true);
+    setSearchChanged && setSearchChanged(!searchChanged);
   };
   return (
     <div className="flex justify-center p-4 md:p-20 ">
