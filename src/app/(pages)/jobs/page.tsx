@@ -17,7 +17,6 @@ const JobsPage = () => {
   const [isSearchChanged, setSearchChanged] = useState(false);
   const searchfromLS = localStorage.getItem('search');
   const search = searchfromLS && JSON.parse(searchfromLS);
-
   const searchValue = search?.search;
   useEffect(() => {
     const fetchData = async () => {
