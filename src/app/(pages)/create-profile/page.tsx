@@ -34,7 +34,7 @@ const CreateProfilePage = () => {
           <Link href="/jobs">
             <div className="flex justify-center ">
               <button className="rounded-xl bg-purple-300 text-black mt-2 p-2 w-36 hover:scale-105 transition-all">
-                Jobs for you →
+                Jobs for you {'>'}
               </button>
             </div>
           </Link>

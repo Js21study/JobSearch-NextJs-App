@@ -63,7 +63,7 @@ export const JobCard = ({
           {detailButton && (
             <Link href={`/job-details/${id}`}>
               <button className="rounded-xl bg-purple-300 text-black mt-2 p-2 w-36 hover:scale-105 transition-all">
-                Detail →
+                Detail {'>'}
               </button>
             </Link>
           )}
