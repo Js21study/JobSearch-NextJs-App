@@ -5,7 +5,7 @@ import SearchIcon from '../assets/svg/search.svg';
 import Link from 'next/link';
 
 interface SearchComponentProps {
-  searchChanged: boolean;
+  searchChanged?: boolean;
   setSearchChanged?: (value: boolean) => void;
   homePage?: boolean;
 }
@@ -19,7 +19,7 @@ const SearchComponent = ({ setSearchChanged, homePage, searchChanged }: SearchCo
   const clickSearch = () => {
     const searchVal = { search: searchValue };
     localStorage.setItem('search', JSON.stringify(searchVal));
-    setSearchChanged && setSearchChanged(!searchChanged);
+    setSearchChanged && searchChanged && setSearchChanged(!searchChanged);
   };
   return (
     <div className="flex justify-center p-4 md:p-20 ">
